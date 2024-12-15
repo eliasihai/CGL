@@ -92,7 +92,7 @@ export class RegisterComponent implements OnInit {
         prefix: '+972',
       });
     } else {
-      console.log('Form is invalid');
+      this.userForm.markAllAsTouched();
     }
   }
 

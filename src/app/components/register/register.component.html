@@ -14,14 +14,14 @@
             [ngClass]="{
               'is-invalid-label': nameControl?.invalid && nameControl?.touched,
             }"
-            >Name*</label
+            >Name</label
           >
           <input
             id="name"
             formControlName="name"
             [ngClass]="{
               'is-invalid': nameControl?.invalid && nameControl?.touched,
-              'is-valid': nameControl?.valid && nameControl?.touched
+              'is-valid': nameControl?.valid
             }"
             class="form-control rounded-pill"
           />
@@ -47,7 +47,7 @@
             formControlName="email"
             [ngClass]="{
               'is-invalid': emailControl?.invalid && emailControl?.touched,
-              'is-valid': emailControl?.valid && emailControl?.touched
+              'is-valid': emailControl?.valid
             }"
             class="form-control rounded-pill"
           />
@@ -75,7 +75,7 @@
             formControlName="country"
             [ngClass]="{
               'is-invalid': countryControl?.invalid && countryControl?.touched,
-              'is-valid': countryControl?.valid && countryControl?.touched
+              'is-valid': countryControl?.valid
             }"
           >
             <option value="">Choose your country</option>
@@ -144,8 +144,7 @@
                 phoneControl?.invalid &&
                 (phoneControl?.touched || phoneControl?.dirty),
               'is-valid':
-                phoneControl?.valid &&
-                (phoneControl?.touched || phoneControl?.dirty)
+                phoneControl?.valid 
             }"
             style="
               padding-left: 100px !important;
@@ -158,8 +157,8 @@
             class="invalid-feedback"
             style="margin-top: 8px"
           >
-            Please enter a valid phone number with at least 8 digits ('-'
-            optional).
+            Please enter a valid phone number with at least 8 digits<span class="no-break">('-'
+            optional).</span>
           </div>
         </div>
       </div>
@@ -168,7 +167,6 @@
     <button
       type="submit"
       class="btn col-12 d-flex justify-content-center m-auto rounded-pill customize-btn"
-      [disabled]="userForm.invalid"
     >
       Submit
     </button>

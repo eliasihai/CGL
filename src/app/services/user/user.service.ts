@@ -12,7 +12,9 @@ export class UserService {
   constructor(private httpClient: HttpClient) {}
 
   createNewUser(params: any): Observable<any> {
-    const phoneNum = params.phone.slice(1);
+    const phoneNum = params.phone.match(/[1-9][0-9]*/g).join('');
+    console.log(phoneNum);
+    
     const phonePrefix = params.prefix.includes('+')
       ? params.prefix.slice(1)
       : params.prefix;
@@ -21,7 +23,7 @@ export class UserService {
       name: params.name,
       email: params.email,
       country: params.country,
-      phone: phoneNum + phonePrefix,
+      phone: phonePrefix + phoneNum,
     };
     const userParams = new HttpParams()
       .set('EMAIL', user.email)
