@@ -1,0 +1,110 @@
+input,
+select {
+  padding: 0.7em 1.5em;
+}
+*:focus {
+  outline: none;
+}
+button:focus {
+  border: none;
+  outline: none;
+}
+
+.is-invalid {
+  box-shadow: rgba(255, 0, 0, 0.35) 0em 0em 0.6em 0.2em;
+}
+.is-invalid-label {
+  color: rgba(255, 0, 0, 0.577);
+}
+
+.customize-btn {
+  background-color: #00b4b9;
+  color: #fff;
+  border: none;
+  padding: 0.7em 1.5em;
+  font-size: 16px;
+}
+
+.customize-btn:hover {
+  cursor: pointer;
+  background-color: #008b8f;
+}
+
+.form-floating > label {
+  height: unset !important;
+  margin-bottom: unset !important;
+}
+.prefix-selector{
+  border: unset;
+  z-index: 9999;
+  background-color: transparent;
+  padding: 1em 1.5em;
+}
+.phone-input {
+  height: calc(3.5rem + calc(var(--bs-border-width) * 2));
+  min-height: calc(3.5rem + calc(var(--bs-border-width) * 2));
+  line-height: 1.25;
+  padding-left: 9em;
+  padding-right: 0;
+}
+.form-floating > .form-control,
+.form-floating > .form-select {
+  padding-top: unset !important;
+  padding-bottom: unset !important;
+}
+
+.floating-label {
+  position: absolute;
+  top: -15px;
+  left: 20px;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 0 5px;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+}
+
+
+#successPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+
+.popup-content {
+  background-color: #189535;
+  color: white;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+
+.popup-content:hover {
+  background-color: #189535;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

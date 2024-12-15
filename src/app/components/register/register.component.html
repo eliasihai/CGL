@@ -1,0 +1,190 @@
+<div class="container mt-5 w-75">
+  <div class="container text-center">
+    <h2 class="mb-4">User Registration Form</h2>
+    <p class="mb-5">Please fill out the form below to register</p>
+  </div>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-6 d-flex flex-column justify-content-md-around">
+        <div class="form-floating mb-5">
+          <label
+            for="name"
+            class="form-label floating-label"
+            [ngClass]="{
+              'is-invalid-label': nameControl?.invalid && nameControl?.touched,
+            }"
+            >Name*</label
+          >
+          <input
+            id="name"
+            formControlName="name"
+            [ngClass]="{
+              'is-invalid': nameControl?.invalid && nameControl?.touched,
+              'is-valid': nameControl?.valid && nameControl?.touched
+            }"
+            class="form-control rounded-pill"
+          />
+          <div
+            *ngIf="nameControl?.invalid && nameControl?.touched"
+            class="invalid-feedback"
+          >
+            Please enter valid name (Use only english letters)
+          </div>
+        </div>
+
+        <div class="form-floating mb-5">
+          <label
+            for="email"
+            class="form-label floating-label"
+            [ngClass]="{
+            'is-invalid-label': emailControl?.invalid && emailControl?.touched,
+          }"
+            >Email</label
+          >
+          <input
+            id="email"
+            formControlName="email"
+            [ngClass]="{
+              'is-invalid': emailControl?.invalid && emailControl?.touched,
+              'is-valid': emailControl?.valid && emailControl?.touched
+            }"
+            class="form-control rounded-pill"
+          />
+          <div
+            *ngIf="emailControl?.invalid && emailControl?.touched"
+            class="invalid-feedback"
+          >
+            Please enter a valid email address.
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 d-flex flex-column justify-content-md-around">
+        <div class="form-floating mb-5">
+          <label
+            for="country"
+            class="form-label floating-label"
+            [ngClass]="{
+            'is-invalid-label': countryControl?.invalid && countryControl?.touched,
+          }"
+            >Country</label
+          >
+          <select
+            class="form-select rounded-pill"
+            (change)="changeCountry($event)"
+            formControlName="country"
+            (change)="countryControl?.markAsTouched()"
+            (focus)="countryControl?.markAsTouched()"
+            [ngClass]="{
+              'is-invalid': countryControl?.invalid && countryControl?.touched,
+              'is-valid': countryControl?.valid && countryControl?.touched
+            }"
+          >
+            <option value="">Choose your country</option>
+            <option
+              *ngFor="let country of countries | async"
+              [value]="country.countryName"
+            >
+              {{ country.countryName }}
+            </option>
+          </select>
+          <div
+            *ngIf="countryControl?.invalid && countryControl?.touched"
+            class="invalid-feedback"
+          >
+            Please select a country.
+          </div>
+        </div>
+
+        <div
+          class="form-floating mb-5 position-relative"
+          style="padding: 0; background-color: white"
+        >
+          <!-- Label -->
+          <label
+            for="phone"
+            class="form-label floating-label"
+            [ngClass]="{
+              'is-invalid-label':
+                phoneControl?.invalid &&
+                (phoneControl?.touched || phoneControl?.dirty)
+            }"
+          >
+            Phone
+          </label>
+
+          <div
+            class="d-flex align-items-center"
+            style="position: absolute; top: 8px; left: 10px; z-index: 10"
+          >
+            <select
+              class="form-select border-0"
+              formControlName="prefix"
+              style="
+                width: 80px;
+                font-size: 14px;
+                background-color: transparent;
+              "
+              (change)="changePrefix($event)"
+            >
+              <option value="+972" selected>+972</option>
+              <option
+                *ngFor="let country of countries | async"
+                [value]="country.phoneCode"
+              >
+                {{ country.phoneCode }}
+              </option>
+            </select>
+          </div>
+
+          <input
+            id="phone"
+            type="phone"
+            formControlName="phone"
+            class="phone-input form-control rounded-pill ps-5"
+            [ngClass]="{
+              'is-invalid':
+                phoneControl?.invalid &&
+                (phoneControl?.touched || phoneControl?.dirty),
+              'is-valid':
+                phoneControl?.valid &&
+                (phoneControl?.touched || phoneControl?.dirty)
+            }"
+            style="
+              padding-left: 100px !important;
+              background-color: transparent;
+            "
+          />
+
+          <div
+            *ngIf="phoneControl?.invalid && phoneControl?.touched"
+            class="invalid-feedback"
+            style="margin-left: 0; margin-top: 8px"
+          >
+            Please enter a valid phone number with at least 8 digits ('-'
+            optional).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="btn col-12 d-flex justify-content-center m-auto rounded-pill customize-btn"
+      [disabled]="userForm.invalid"
+    >
+      Submit
+    </button>
+  </form>
+  <div
+    id="successPopup"
+    class="popup-message"
+    (click)="dismissPopup()"
+    *ngIf="displayPopUp"
+  >
+    <div class="popup-content">
+      <p>Success</p>
+    </div>
+  </div>
+</div>
