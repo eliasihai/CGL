@@ -9,11 +9,11 @@ import { CONFIG } from '../../config/config';
 })
 export class CountiesService {
   private url = CONFIG.apiUrls.countries;
-  
-  constructor(private httpClient: HttpClient) {}
+
+  constructor(private httpClient: HttpClient) { }
 
   getCountries(): Observable<Country[]> {
-    return this.httpClient.get<any>(this.url).pipe(
+    return this.httpClient.get<any>(this.url, { headers: { Accept: 'application/json' } }).pipe(
       map((response) => {
         try {
           const parsedResponse = JSON.parse(response);

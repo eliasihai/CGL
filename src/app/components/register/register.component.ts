@@ -20,29 +20,10 @@ import { UserService } from '../../services/user/user.service';
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent implements OnInit {
-  public userForm: FormGroup = new FormGroup({});
+  public userForm: FormGroup;
   public countries: Observable<Country[]>;
   public displayPopUp: boolean = false;
-  constructor(
-    private fb: FormBuilder,
-    private countiesService: CountiesService,
-    private userService: UserService
-  ) {
-    this.countries = this.countiesService.getCountries();
-  }
 
-  ngOnInit(): void {
-    this.userForm = this.fb.group({
-      name: ['', [Validators.required, Validators.pattern('^[A-Za-z ]+$')]],
-      email: ['', [Validators.required, Validators.email]],
-      country: ['', [Validators.required]],
-      phone: [
-        '',
-        [Validators.required, Validators.pattern('^[+]?[-0-9]{8,}$')],
-      ],
-      prefix: ['+972', Validators.required],
-    });
-  }
   get nameControl() {
     return this.userForm?.get('name');
   }
@@ -59,8 +40,27 @@ export class RegisterComponent implements OnInit {
     return this.userForm?.get('prefix');
   }
 
-  changeCountry(event: Event) {}
-  changePrefix(event: Event) {}
+  constructor(
+    private fb: FormBuilder,
+    private countiesService: CountiesService,
+    private userService: UserService
+  ) {
+    this.userForm = this.getUserForm();
+    this.countries = this.countiesService.getCountries();
+  }
+
+  private getUserForm(): FormGroup {
+    return this.fb.group({
+      name: ['', [Validators.required, Validators.pattern('^[A-Za-z ]+$')]],
+      email: ['', [Validators.required, Validators.email]],
+      country: ['', [Validators.required]],
+      phone: [
+        '',
+        [Validators.required, Validators.pattern('^[+]?[-0-9]{8,}$')],
+      ],
+      prefix: ['+972', Validators.required],
+    });
+  }
 
   showSuccessPopup(): void {
     this.displayPopUp = true;
@@ -95,4 +95,6 @@ export class RegisterComponent implements OnInit {
       console.log('Form is invalid');
     }
   }
+
+  ngOnInit(): void {}
 }

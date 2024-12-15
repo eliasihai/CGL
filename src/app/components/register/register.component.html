@@ -72,10 +72,7 @@
           >
           <select
             class="form-select rounded-pill"
-            (change)="changeCountry($event)"
             formControlName="country"
-            (change)="countryControl?.markAsTouched()"
-            (focus)="countryControl?.markAsTouched()"
             [ngClass]="{
               'is-invalid': countryControl?.invalid && countryControl?.touched,
               'is-valid': countryControl?.valid && countryControl?.touched
@@ -126,7 +123,6 @@
                 font-size: 14px;
                 background-color: transparent;
               "
-              (change)="changePrefix($event)"
             >
               <option value="+972" selected>+972</option>
               <option
@@ -160,7 +156,7 @@
           <div
             *ngIf="phoneControl?.invalid && phoneControl?.touched"
             class="invalid-feedback"
-            style="margin-left: 0; margin-top: 8px"
+            style="margin-top: 8px"
           >
             Please enter a valid phone number with at least 8 digits ('-'
             optional).

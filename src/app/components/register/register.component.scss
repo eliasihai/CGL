@@ -65,6 +65,10 @@ button:focus {
   box-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
 }
 
+.invalid-feedback{
+  margin-left: 1em;
+}
+
 
 #successPopup {
   position: fixed;
